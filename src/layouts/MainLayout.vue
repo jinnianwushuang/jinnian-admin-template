@@ -1,5 +1,11 @@
+<!--
+ * @Date           : 2020-09-09 23:56:34
+ * @FilePath       : /node-quasar-fullstack/src/layouts/MainLayout.vue
+ * @Description    : 
+-->
 <template>
   <q-layout view="lHh Lpr lFf">
+    <q-resize-observer @resize="on_window_resize" />
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -12,10 +18,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          node 全栈学习项目
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>加油</div>
       </q-toolbar>
     </q-header>
 
@@ -23,20 +29,21 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
+      :width="120"
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
+        <q-item
+          v-for="(item, index) in menu_data"
+       
+          :class="item.name == $route.name?'bg-primary text-white':''"
+          :key="`menu_data_${index}`"
+          @click="go_to_page(item)"
+          clickable
+          v-ripple
         >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+          <q-item-section> {{ item.title }} </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -47,61 +54,32 @@
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink.vue'
+import { mapActions } from "vuex";
 
-const linksData = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
-
+import menu_data from "src/config/menu.js";
 export default {
-  name: 'MainLayout',
-  components: { EssentialLink },
-  data () {
+  name: "MainLayout",
+  data() {
     return {
       leftDrawerOpen: false,
-      essentialLinks: linksData
+      menu_data
+    };
+  },
+  methods: {
+    ...mapActions([
+      "set_window_size" //also supports payload `this.nameOfAction(amount)`
+    ]),
+    go_to_page(item) {
+      this.$router.push({
+        name: item.name
+      });
+    },
+    on_window_resize(size) {
+      // console.log("----size  ---", size);
+      // size.height= size.height<600?600:size.height
+      // size.width =size.width<1200?1200:size.width
+      this.set_window_size(size);
     }
   }
-}
+};
 </script>
