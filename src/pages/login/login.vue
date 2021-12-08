@@ -96,6 +96,11 @@ export default {
   },
   methods: {
        handle_login(){
+
+
+                  SessionStorage.set('token',123456)
+          this. handle_login_success()
+          return false
         let params={
          username:this.login_form.username,
           password: md5(this.login_form.password)

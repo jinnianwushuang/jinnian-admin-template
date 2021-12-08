@@ -30,10 +30,10 @@ const routes = [
         component: () => import("src/pages/authentication/index.vue")
       },
       {
-        path: "author",
-        name: "author",
+        path: "itheima_checkitem",
+        name: "itheima_checkitem",
 
-        component: () => import("src/pages/author/index.vue")
+        component: () => import("src/pages/itheima_checkitem/index.vue")
       },
       {
         path: "artical",

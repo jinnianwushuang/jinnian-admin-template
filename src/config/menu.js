@@ -21,9 +21,9 @@ const menu_data = [
     name:"tutorial",
   },
     {
-    title: '作者模块',
-    path: "author",
-    name: "author",
+    title: '检查项管理',
+    path: "itheima_checkitem",
+    name: "itheima_checkitem",
   },
   {
     title: '文章模块',

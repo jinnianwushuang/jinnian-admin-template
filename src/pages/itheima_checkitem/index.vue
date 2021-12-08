@@ -1,6 +1,6 @@
 <!--
  * @Date           : 2020-09-13 00:45:57
- * @FilePath       : /node-quasar-fullstack/src/pages/author/index.vue
+ * @FilePath       : /node-quasar-fullstack/src/pages/itheima_checkitem/index.vue
  * @Description    : 
 -->
 <template>
@@ -155,8 +155,8 @@
 <script>
 import { mapGetters } from "vuex";
 
-import { columns } from "src/pages/author/config/index.js";
-import { api_author } from "src/api/index.js";
+import { columns } from "src/pages/itheima_checkitem/config/index.js";
+import { api_itheima_checkitem } from "src/api/index.js";
 import myPagination from "src/components/pagination/pagination1.vue";
 export default {
   components: {
@@ -219,8 +219,8 @@ export default {
         page: this.pagination.currentPage,
         size: this.pagination.pageSize
       };
-      console.log("api_author", api_author);
-      api_author.get_author_findAll(params).then(res => {
+      console.log("api_itheima_checkitem", api_itheima_checkitem);
+      api_itheima_checkitem.get_itheima_checkitem_findAll(params).then(res => {
         console.log("-1111111111111111111---调用接口返回数据");
         console.log(res.data.data);
         let data = this.$lodash.get(res, "data.data");
@@ -270,14 +270,14 @@ this.edit_dialog_title='编辑作者'
     // 删除
     handle_click_delete(item) {
       console.log("删除单个", item);
-      api_author.delete_author_by_id({ id: item.id }).then(res => {
+      api_itheima_checkitem.delete_itheima_checkitem_by_id({ id: item.id }).then(res => {
         this.init_table_data();
       });
     },
     // 一键删除
     handle_click_delete_all() {
       console.log("删除所有");
-      api_author.delete_author_all().then(res => {
+      api_itheima_checkitem.delete_itheima_checkitem_all().then(res => {
         this.init_table_data();
       });
     },
@@ -289,7 +289,7 @@ this.edit_dialog_title='编辑作者'
     // 批量新增模拟数据
     handle_click_mock_data() {
       console.log("批量新增模拟数据");
-   api_author.get_author_fastMock().then(()=>{
+   api_itheima_checkitem.get_itheima_checkitem_fastMock().then(()=>{
      this.init_table_data()
    })
 
@@ -309,7 +309,7 @@ this.edit_dialog_title='编辑作者'
     // 提交新增
     handle_click_submit_add(obj) {
       let params = obj || this.editing_obj;
-      api_author.post_author_create(params).then(res => {
+      api_itheima_checkitem.post_itheima_checkitem_create(params).then(res => {
         if (!obj) {
           this.init_table_data();
         }
@@ -318,7 +318,7 @@ this.edit_dialog_title='编辑作者'
     //提交修改
     handle_click_submit_edit(obj ) {
       let params = obj || this.editing_obj;
-      api_author.put_author_by_id(params).then(res => {
+      api_itheima_checkitem.put_itheima_checkitem_by_id(params).then(res => {
         this.init_table_data();
       });
     }

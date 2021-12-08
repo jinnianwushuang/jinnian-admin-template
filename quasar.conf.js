@@ -21,7 +21,8 @@ module.exports = function (/* ctx */) {
       
       'i18n',
       'axios',
-      "lodash"
+      "lodash",
+      "notify"
     ],
 
     // https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -79,12 +80,12 @@ module.exports = function (/* ctx */) {
     // Full list of options: https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: false,
-      port: 8080,
+      port: 8088,
       open: true, // opens browser window automatically
       proxy: {
         '/api/': {
           target: "http://localhost:82",
-          pathRewrite: {'^/api/' : '/api/'}
+          pathRewrite: {'^/api/' : '/'}
         }
       }
     },
@@ -108,7 +109,13 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Notify',
+        'LocalStorage',
+        'SessionStorage',
+        'Cookies'
+
+      ]
     },
 
     // animations: 'all', // --- includes all animations

@@ -15,3 +15,6 @@ export * as api_login from "src/api/module/login.js"
 export * as api_message from "src/api/module/message.js"
 
 
+export * as api_itheima_checkitem from "src/api/module/chuanzhi_jiankang/itheima.checkitem.js"
+
+

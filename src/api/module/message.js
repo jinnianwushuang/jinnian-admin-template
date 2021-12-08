@@ -5,7 +5,7 @@
  */
 
 import mock_data from "src/pages/message/mock/index.js"
-import  axios from "src/api/axios_wapper.js"
+import  axios from "src/api/common/axios_wapper.js"
 
 export const  get_message_list_data =(params,url)=>{
     // return axios.get(url,{params})

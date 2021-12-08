@@ -4,7 +4,7 @@
  * @Description    : 
  */
 
-import axios from "src/api/axios_wapper.js"
+import axios from "src/api/common/axios_wapper.js"
 let prefix= process.env.API_PREFIX
 
 
